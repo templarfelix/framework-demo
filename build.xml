@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="deploy" name="Dynamic">
+
+  <property environment="env"/>
+
+  <condition else="mvn" property="mvn.exec" value="mvn.cmd">
+    <os family="windows"/>
+  </condition>
+
+  <target description="Compila e instala os artefatos no repositório local." name="install-all">
+    <exec dir="." executable="${mvn.exec}" failonerror="true">
+      <arg line="clean install -P default -Dmaven.test.skip=true"/>
+    </exec>
+  </target>
+
+  <target description="Compila e instala os artefatos no repositório local."
+    name="install-all-production">
+    <exec dir="." executable="${mvn.exec}" failonerror="true">
+      <arg line="clean install -P production"/>
+    </exec>
+  </target>
+
+  <target description="Compila e instala os artefatos no repositório local."
+    name="install-all-openshift">
+    <exec dir="." executable="${mvn.exec}" failonerror="true">
+      <arg line="clean install -P openshift"/>
+    </exec>
+  </target>
+
+  <target description="Atualiza os artefatos do projeto, compila e instala os artefatos no repositório local."
+    name="install-all-update-plugins">
+    <exec dir="." executable="${mvn.exec}" failonerror="true">
+      <arg line="clean install -U -up"/>
+    </exec>
+  </target>
+
+  <target description="Elimina todos os artefatos compilados e limpa o projeto." name="clean">
+    <exec dir="." executable="${mvn.exec}" failonerror="true">
+      <arg line="clean"/>
+    </exec>
+  </target>
+
+  <target description="Realiza a implantação do projeto no servidor JBoss." name="deploy">
+    <exec dir="." executable="${mvn.exec}" failonerror="true">
+      <arg line="clean install package wildfly:deploy -Dmaven.test.skip=true"/>
+    </exec>
+  </target>
+
+  <target description="Remove os arquivos implantados no servidor." name="undeploy">
+    <exec dir="." executable="${mvn.exec}" failonerror="false">
+      <arg line="wildfly:undeploy "/>
+    </exec>
+  </target>
+
+  <target description="Realiza os testes no projeto EJB." name="test-ejb">
+    <exec dir="ejb" executable="${mvn.exec}" failonerror="true">
+      <arg line="clean test -Parq-wildfly-remote"/>
+    </exec>
+  </target>
+
+  <target description="Exibe a arvore de dependencias." name="dependency-tree">
+    <exec dir="." executable="${mvn.exec}" failonerror="true">
+      <arg line="dependency:tree > dep.log"/>
+    </exec>
+  </target>
+
+</project>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.easycm.framework</groupId>
+    <artifactId>framework-parent-ear</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <groupId>br.com.streamsoft.dynamic</groupId>
+  <artifactId>dynamic-ear</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>ear</packaging>
+
+  <name>SGJ EAR module</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ear-plugin</artifactId>
+        <configuration>
+          <modules>
+
+            <webModule>
+              <groupId>br.com.streamsoft.dynamic</groupId>
+              <artifactId>dynamic-web</artifactId>
+              <contextRoot>/dynamic</contextRoot>
+            </webModule>
+
+          </modules>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>openshift</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-ear-plugin</artifactId>
+            <configuration>
+              <modules>
+                <webModule>
+                  <groupId>br.com.streamsoft.dynamic</groupId>
+                  <artifactId>dynamic-web</artifactId>
+                  <contextRoot>/dynamic</contextRoot>
+                </webModule>
+              </modules>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <dependencies>
+    <dependency>
+      <groupId>br.com.streamsoft.dynamic</groupId>
+      <artifactId>dynamic-web</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>br.com.streamsoft.dynamic</groupId>
+      <artifactId>dynamic-ejb</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <type>ejb</type>
+    </dependency>
+
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>1.6.1</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>framework</id>
+      <name>Framework Repository</name>
+      <url>https://mymavenrepo.com/repo/cHzQsqPJREcNjqie0XXy/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>jboss-enterprise-maven-repository</id>
+      <url>https://maven.repository.redhat.com/ga/</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>neomind.default</id>
+      <name>neomind's Maven Repository</name>
+      <url>http://nexus.neomind.com.br:8100/nexus/content/groups/neomind/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+
+</project>

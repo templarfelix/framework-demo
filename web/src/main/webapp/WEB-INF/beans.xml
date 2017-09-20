@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xsi:schemaLocation="
+        http://java.sun.com/xml/ns/javaee 
+        http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
+
+  <interceptors>
+    <class>io.easycm.framework.base.security.interceptor.SecurityInterceptor</class>
+    <class>io.easycm.framework.base.security.interceptor.LogInterceptor</class>
+    <class>io.easycm.framework.base.security.interceptor.ExceptionAwareInterceptor</class>
+    <class>io.easycm.framework.base.security.interceptor.LazyAwareInterceptor</class>
+    <class>io.easycm.framework.base.security.interceptor.TransactionalInterceptor</class>
+    <class>io.easycm.projects.multitenancy.TenantInterceptor</class>
+  </interceptors>
+
+</beans>
