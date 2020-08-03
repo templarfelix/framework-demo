@@ -39,3 +39,6 @@ BPM:
 JUNIT:
     Fazer com arquillian usando as EJBS ou Facade como era antes.
     https://github.com/danielsoro/querydsl-example/blob/master/src/test/java/br/com/ivia/querydsl/repository/CustomerRepositoryTest.java
+    
+    
+    .
